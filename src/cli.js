@@ -2,7 +2,7 @@ const program = require('commander');
 const show = require('./commands/show');
 const list = require('./commands/list');
 
-function run() {
+exports.run = function () {
     program
         .version('0.1.0')
         .command('show <name>')
@@ -15,8 +15,4 @@ function run() {
         .action(list);
 
     program.parse(process.argv);
-}
-
-module.exports = {
-    run: run
 }

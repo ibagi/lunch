@@ -1,44 +1,39 @@
-const http = require('http');
 const cheerio = require('cheerio');
-const Table = require('../renderers/table');
 const { fetchHtml } = require('../utils');
 
 const URI = 'http://www.halaszcsardaszolnok.hu/index.php?lng=hun&page=3';
+const DATE_REGEXP = /^(\d{2,4}\.\s){3}/;
+const ITEM_REGEXP = /I{1,3}\. menü:/g;
+
+const pushMenuItem = (menuItems, item) => {
+    if (!item) {
+        return;
+    }
+
+    if (item.match(ITEM_REGEXP)) {
+        return;
+    }
+
+    if (item.match(DATE_REGEXP)) {
+        const [ date, soup ] = item.split(':');
+        menuItems.push({ header: date.trim(), items: [] });
+        menuItems[menuItems.length - 1].items.push(soup.trim());
+    } else {
+        menuItems[menuItems.length - 1].items.push(item.trim());
+    }
+}
 
 const halasz = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
-
-    let items = [];
-    const dateRegExp = /^(\d{2,4}\.\s){3}/;
-    const itemRegExp = /I{1,3}\. menü:/g;
+    const menuItems = [];
 
     $('strong').each(function (_, el) {
-        let current = $(this).text().trim();
-        let next = $(this.next).text().trim();
-        if (current.match(dateRegExp)) {
-            items.push(current.split(':')[0]);
-            items.push(current.split(':')[1]);
-        } else {
-            items.push(current);
-        }
-        items.push(next);
+        pushMenuItem(menuItems,  $(this).text().trim());
+        pushMenuItem(menuItems, $(this.next).text().trim());
     });
 
-    items = items
-        .filter(i => !!i && !i.match(itemRegExp))
-        .map(i => i.trim());
-
-    const menuItems = [];
-    for (const item of items) {
-        if (item.match(dateRegExp)) {
-            menuItems.push({ header: item, items: [] });
-        } else {
-            menuItems[menuItems.length - 1].items.push(item);
-        }
-    }
-
-    Table.render(menuItems);
+    return menuItems;
 }
 
 module.exports = halasz;

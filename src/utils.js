@@ -41,7 +41,7 @@ const getProvider = async (name) => {
 }
 
 module.exports = {
-    getAllProviders: getAllProviders,
-    getProvider: getProvider,
-    fetchHtml: fetchHtml
+    fetchHtml,
+    getAllProviders,
+    getProvider
 }
