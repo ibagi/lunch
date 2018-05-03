@@ -1,0 +1,24 @@
+{
+  "name": "lunch",
+  "version": "1.0.0",
+  "description": "Simple restaurant menu scrapper for lazy people",
+  "main": "./src/index.js",
+  "bin": "./src/index.js",
+  "scripts": {
+    "lunch": "./src/index.js"
+  },
+  "keywords": [
+    "node",
+    "cli",
+    "web",
+    "scrapping"
+  ],
+  "author": "Bagi Imre",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "cli-table": "^0.3.1",
+    "commander": "^2.15.1",
+    "rss-parser": "^3.1.2"
+  }
+}
