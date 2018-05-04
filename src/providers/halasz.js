@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../utils');
+const TableRenderer = require('../renderers/table');
 
 const URI = 'http://www.halaszcsardaszolnok.hu/index.php?lng=hun&page=3';
 const DATE_REGEXP = /^(\d{2,4}\.\s){3}/;
@@ -33,7 +34,7 @@ const halasz = async () => {
         pushMenuItem(menuItems, $(this.next).text().trim());
     });
 
-    return menuItems;
+    TableRenderer.render(menuItems);
 }
 
 module.exports = halasz;

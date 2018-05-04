@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../utils');
+const TableRenderer = require('../renderers/table');
 
 const URI = 'http://www.tisztiklubetterem.hu/?menu=menu';
 
@@ -28,7 +29,7 @@ const hemo = async () => {
         });
     });
 
-    return menuItems;
+    TableRenderer.render(menuItems);
 };
 
 module.exports = hemo;

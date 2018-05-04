@@ -1,5 +1,6 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
+const TableRenderer = require('../renderers/table');
 
 const URI = 'http://drakeetterem.hu/feed';
 
@@ -8,7 +9,7 @@ const drake = async () => {
     const { items } = data;
     const dateRegExp = /(\d{2,}\.\s){3}/;
     const itemRegExp = /[A,B,C]+: /;
-    
+
     const menuItems = items
         .filter(i => dateRegExp.test(i.title))
         .reverse()
@@ -17,7 +18,7 @@ const drake = async () => {
             items: i.content.split(itemRegExp).map(j => j.replace(itemRegExp, "").trim())
         }));
 
-    return menuItems;
+    TableRenderer.render(menuItems);
 }
 
 module.exports = drake;

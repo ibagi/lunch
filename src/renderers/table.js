@@ -1,6 +1,6 @@
 const Table = require('cli-table');
 
-const table = {
+const TableRenderer = {
     render(menuItems) {
         const menu = new Table();
         for(const i of menuItems) {
@@ -13,4 +13,4 @@ const table = {
     }
 }
 
-module.exports = table;
+module.exports = TableRenderer;
