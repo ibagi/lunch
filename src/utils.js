@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
+const { exec } = require('child_process');
 
 const fetchHtml = (uri) => {
     return new Promise((resolve, reject) => {
@@ -13,12 +14,35 @@ const fetchHtml = (uri) => {
     });
 }
 
+const getCommandLine = () => {
+    switch (process.platform) {
+        case 'darwin':
+            return 'open';
+        case 'win32':
+        case 'win64':
+            return 'start';
+        default:
+            return 'xdg-open';
+    }
+}
+
+const showImage = (uri, path = 'show.png') => {
+    const file = fs.createWriteStream(path);
+    http.get(uri, (res) => {
+        res.pipe(file);
+        res.on('end', () => {
+            const process = exec(`${getCommandLine()} ${path}`);
+            //process.on('close', () => fs.unlinkSync(path));
+        });
+    });
+}
+
 const getAllProviders = () => {
     return new Promise((resolve, reject) => {
         const providerPath = path.join(__dirname, 'providers');
         fs.readdir(providerPath, (err, files) => {
-            if(err) reject(err);
-            resolve(files.map(i =>i.replace('.js', '')));
+            if (err) reject(err);
+            resolve(files.map(i => i.replace('.js', '')));
         });
     });
 }
@@ -42,6 +66,7 @@ const getProvider = async (name) => {
 
 module.exports = {
     fetchHtml,
+    showImage,
     getAllProviders,
     getProvider
 }
