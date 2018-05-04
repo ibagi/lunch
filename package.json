@@ -1,25 +1,32 @@
 {
   "name": "lunch",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple restaurant menu scrapper for lazy people",
-  "main": "./src/index.js",
-  "bin": "./src/index.js",
-  "scripts": {
+  "main": "index.js",
+  "bin": {
     "lunch": "./src/index.js"
   },
+  "scripts": {
+    "dev": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudhyd/lunch.git"
+  },
+  "author": "Bagi Imre",
+  "license": "MIT",
   "keywords": [
     "node",
     "cli",
     "web",
     "scrapping"
   ],
-  "author": "Bagi Imre",
-  "license": "ISC",
+
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "cli-table": "^0.3.1",
     "commander": "^2.15.1",
     "moment": "^2.22.1",
-    "rss-parser": "^3.1.2",
+    "rss-parser": "^3.1.2"
   }
 }
