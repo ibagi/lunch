@@ -17,7 +17,7 @@ const hemo = async () => {
         let items = [];
 
         $(this).children('td').each(function (_, child) {
-            let item = $(this).text().replace('\n', '');
+            let item = $(this).text().replace('\n', ' ');
             if (item) {
                 items.push(item);
             }
