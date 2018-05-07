@@ -8,7 +8,7 @@ const drake = async () => {
     const data = await parser.parseURL(URI);
     const { items } = data;
     const dateRegExp = /(\d{2,}\.\s){3}/;
-    const itemRegExp = /[A,B,C]+: /;
+    const itemRegExp = /[A,B,C]+:/;
 
     const menuItems = items
         .filter(i => dateRegExp.test(i.title))
