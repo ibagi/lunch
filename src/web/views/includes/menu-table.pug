@@ -1,0 +1,8 @@
+table
+    tbody
+        each menuItem in menu
+            tr
+                td.bold= menuItem.header
+                each item in menuItem.items
+                    td= item
+        

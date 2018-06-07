@@ -7,7 +7,9 @@
     "lunch": "./src/index.js"
   },
   "scripts": {
-    "dev": "./src/index.js"
+    "dev": "./src/index.js",
+    "start-web": "node ./src/web/server.js",
+    "debug-web": "set DEBUG=web:* & npm run start-web"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,11 @@
     "cheerio": "^1.0.0-rc.2",
     "cli-table": "^0.3.1",
     "commander": "^2.15.1",
-    "rss-parser": "^3.1.2"
+    "rss-parser": "^3.1.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "pug": "2.0.0-beta11"
   }
 }

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Available restaurants
+  ul
+  each provider in providers
+    li 
+      a(href='/' + provider)=provider
+

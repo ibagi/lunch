@@ -4,12 +4,15 @@ const ImageRenderer = require('../renderers/image');
 
 const URI = 'http://sorarium.hu/gasztronomia/';
 
-const sorarium = async () => {
+const Sorarium = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
     const link = $('#heti-menu').find('a')[0];
-    
-    await ImageRenderer.render($(link).attr('href').replace('https', 'http'));
+    return {
+        result: $(link).attr('href').replace('https', 'http'),
+        renderer: ImageRenderer
+    };
 }
 
-module.exports = sorarium;
+Sorarium.display = 'Sörárium';
+module.exports = Sorarium;

@@ -4,7 +4,7 @@ const TableRenderer = require('../renderers/table');
 
 const URI = 'http://www.tisztiklubetterem.hu/?menu=menu';
 
-const hemo = async () => {
+const Hemo = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
     const menuItems = [];
@@ -29,7 +29,11 @@ const hemo = async () => {
         });
     });
 
-    TableRenderer.render(menuItems);
+    return {
+        result: menuItems,
+        renderer: TableRenderer
+    }
 };
 
-module.exports = hemo;
+Hemo.display = 'Tiszti klub';
+module.exports = Hemo;

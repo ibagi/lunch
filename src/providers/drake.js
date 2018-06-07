@@ -4,7 +4,7 @@ const TableRenderer = require('../renderers/table');
 
 const URI = 'http://drakeetterem.hu/feed';
 
-const drake = async () => {
+const Drake = async () => {
     const data = await parser.parseURL(URI);
     const { items } = data;
     const dateRegExp = /(\d{2,}\.\s){3}/;
@@ -18,7 +18,11 @@ const drake = async () => {
             items: i.content.split(itemRegExp).map(j => j.replace(itemRegExp, "").trim())
         }));
 
-    TableRenderer.render(menuItems);
+    return {
+        result: menuItems,
+        renderer: TableRenderer
+    };
 }
 
-module.exports = drake;
+Drake.display = 'Drake étterem';
+module.exports = Drake;

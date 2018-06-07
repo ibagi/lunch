@@ -7,34 +7,34 @@ const DATE_REGEXP = /^(\d{2,4}\.\s){3}/;
 const ITEM_REGEXP = /I{1,3}\. menü:/g;
 
 const pushMenuItem = (menuItems, item) => {
-    if (!item) {
+    if (!item) 
         return;
-    }
-
-    if (item.match(ITEM_REGEXP)) {
+    if (item.match(ITEM_REGEXP)) 
         return;
-    }
 
     if (item.match(DATE_REGEXP)) {
-        const [ date, soup ] = item.split(':');
+        const [date, soup] = item.split(':');
         menuItems.push({ header: date.trim(), items: [] });
         menuItems[menuItems.length - 1].items.push(soup.trim());
     } else {
         menuItems[menuItems.length - 1].items.push(item.trim());
     }
 }
-
-const halasz = async () => {
+const Halasz = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
     const menuItems = [];
 
     $('strong').each(function (_, el) {
-        pushMenuItem(menuItems,  $(this).text().trim());
+        pushMenuItem(menuItems, $(this).text().trim());
         pushMenuItem(menuItems, $(this.next).text().trim());
     });
 
-    TableRenderer.render(menuItems);
+    return {
+        result: menuItems,
+        renderer: TableRenderer
+    };
 }
 
-module.exports = halasz;
+Halasz.display = 'Halászcsárda';
+module.exports = Halasz;
