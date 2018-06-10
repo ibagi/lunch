@@ -1,12 +1,15 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #808e9b;
 }
 
-a {
-  color: #00B7FF;
+.uppercase {
+  text-transform: uppercase;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.shadow {
+  filter: drop-shadow(0 0 1px #333);
 }

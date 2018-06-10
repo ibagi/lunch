@@ -1,6 +1,5 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
-const TableRenderer = require('../renderers/table');
 
 const URI = 'http://drakeetterem.hu/feed';
 
@@ -18,10 +17,7 @@ const Drake = async () => {
             items: i.content.split(itemRegExp).map(j => j.replace(itemRegExp, "").trim())
         }));
 
-    return {
-        result: menuItems,
-        renderer: TableRenderer
-    };
+    return menuItems;
 }
 
 Drake.display = 'Drake étterem';

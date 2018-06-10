@@ -1,8 +1,8 @@
-const { getAllProviders } = require('../utils');
+const lunch = require('lunch');
 
 const list = async (cmd) => {
     try {
-        const providers = await getAllProviders();
+        const providers = lunch.getAllProviders();
         console.log(`Available menu providers:`);
         for(const provider of providers) {
             console.log(`- ${provider}`);

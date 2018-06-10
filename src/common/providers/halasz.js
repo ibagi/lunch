@@ -1,15 +1,14 @@
 const cheerio = require('cheerio');
-const { fetchHtml } = require('../utils');
-const TableRenderer = require('../renderers/table');
+const { fetchHtml } = require('../lunch');
 
 const URI = 'http://www.halaszcsardaszolnok.hu/index.php?lng=hun&page=3';
 const DATE_REGEXP = /^(\d{2,4}\.\s){3}/;
 const ITEM_REGEXP = /I{1,3}\. menü:/g;
 
 const pushMenuItem = (menuItems, item) => {
-    if (!item) 
+    if (!item)
         return;
-    if (item.match(ITEM_REGEXP)) 
+    if (item.match(ITEM_REGEXP))
         return;
 
     if (item.match(DATE_REGEXP)) {
@@ -20,6 +19,7 @@ const pushMenuItem = (menuItems, item) => {
         menuItems[menuItems.length - 1].items.push(item.trim());
     }
 }
+
 const Halasz = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
@@ -30,10 +30,7 @@ const Halasz = async () => {
         pushMenuItem(menuItems, $(this.next).text().trim());
     });
 
-    return {
-        result: menuItems,
-        renderer: TableRenderer
-    };
+    return menuItems;
 }
 
 Halasz.display = 'Halászcsárda';

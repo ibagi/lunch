@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
-const { fetchHtml } = require('../utils');
-const ImageRenderer = require('../renderers/image');
+const { fetchHtml } = require('../lunch');
 
 const URI = 'http://www.newyorkbistro.hu';
 
@@ -11,10 +10,7 @@ const NewYork = async () => {
         return $(this).text().toLocaleLowerCase().includes('heti')
     })[0];
 
-    return {
-        result: `${URI}\\${$(link).attr('href')}`,
-        renderer: ImageRenderer
-    };
+    return `${URI}\\${$(link).attr('href')}`;
 }
 
 NewYork.display = 'New York Caffé';

@@ -1,8 +1,10 @@
-table
-    tbody
+.ui.segment.shadow
+    .ui.relaxed.divided.list
         each menuItem in menu
-            tr
-                td.bold= menuItem.header
-                each item in menuItem.items
-                    td= item
+            .item
+                .content
+                    .header.uppercase= menuItem.header
+                    .ui.list
+                        each item in menuItem.items
+                           li.item.description= "- " + item
         

@@ -2,7 +2,7 @@ const os = require('os');
 const path = require('path');
 const { exec } = require('child_process');
 
-const { fetchFile } = require('../utils');
+const { fetchFile } = require('lunch');
 
 const _getStartCommand = () => {
     switch (process.platform) {

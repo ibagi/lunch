@@ -25,13 +25,9 @@ const fetchFile = (uri, path) => {
 }
 
 const getAllProviders = () => {
-    return new Promise((resolve, reject) => {
-        const providerPath = path.join(__dirname, 'providers');
-        fs.readdir(providerPath, (err, files) => {
-            if (err) reject(err);
-            resolve(files.map(i => i.replace('.js', '')));
-        });
-    });
+    const providerPath = path.join(__dirname, 'providers');
+    files = fs.readdirSync(providerPath);
+    return files.map(i => i.replace('.js', ''));
 }
 
 const getProviderPath = (name) => {

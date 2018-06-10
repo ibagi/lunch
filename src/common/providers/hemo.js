@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
-const { fetchHtml } = require('../utils');
-const TableRenderer = require('../renderers/table');
+const { fetchHtml } = require('../lunch');
 
 const URI = 'http://www.tisztiklubetterem.hu/?menu=menu';
 
@@ -8,7 +7,7 @@ const Hemo = async () => {
     const rawHtml = await fetchHtml(URI);
     const $ = cheerio.load(rawHtml);
     const menuItems = [];
-    
+
     $('tr').each(function (i, el) {
         if (i === 0) return;
 
@@ -29,10 +28,7 @@ const Hemo = async () => {
         });
     });
 
-    return {
-        result: menuItems,
-        renderer: TableRenderer
-    }
+    return menuItems;
 };
 
 Hemo.display = 'Tiszti klub';

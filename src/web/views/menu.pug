@@ -1,8 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  if table
-    include includes/menu-table
-  else
-    img(src=menu)
+  .ui.hidden.divider
+  .ui.main.container
+    .ui.centered.grid
+      .column
+        if table
+          include includes/menu-table
+        else
+          include includes/menu-image
