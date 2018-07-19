@@ -11,7 +11,7 @@ const fetchHtml = (uri) => {
             response.on('error', (err) => reject(err));
         })
     });
-}
+};
 
 const fetchFile = (uri, path) => {
     return new Promise((resolve, reject) => {
@@ -22,13 +22,13 @@ const fetchFile = (uri, path) => {
             res.on('end', () => resolve(file));
         });
     })
-}
+};
 
 const getAllProviders = () => {
     const providerPath = path.join(__dirname, 'providers');
     files = fs.readdirSync(providerPath);
     return files.map(i => i.replace('.js', ''));
-}
+};
 
 const getProviderPath = (name) => {
     return new Promise((resolve, reject) => {
@@ -39,17 +39,18 @@ const getProviderPath = (name) => {
             else reject('File not found')
         });
     });
-}
+};
 
 const getProvider = async (name) => {
     const providerPath = await getProviderPath(name);
     const provider = require(providerPath);
     return provider;
-}
+};
 
 module.exports = {
     fetchHtml,
     fetchFile,
     getAllProviders,
-    getProvider
+    getProvider,
+    getProviderPath
 }

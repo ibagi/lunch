@@ -3,7 +3,7 @@
         each menuItem in menu
             .item
                 .content
-                    .header.uppercase= menuItem.header
+                    div(class = menuItem.isToday ? 'red' : '').header.uppercase= menuItem.header
                     .ui.list
                         each item in menuItem.items
                            li.item.description= "- " + item
