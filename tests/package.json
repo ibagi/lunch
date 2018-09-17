@@ -8,7 +8,10 @@
     "url": "git+https://github.com/rudhyd/lunch.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest -t"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "Bagi Imre",
   "license": "MIT",

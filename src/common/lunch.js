@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
+const https = require('https');
 
-const fetchHtml = (uri) => {
+const fetchHtml = (uri, useSsl = false) => {
     return new Promise((resolve, reject) => {
-        http.get(uri, (response) => {
+        const service = useSsl ? https : http;
+        service.get(uri, (response) => {
             let chunks = '';
             response.on('data', (chunk) => chunks += chunk);
             response.on('end', () => resolve(chunks));

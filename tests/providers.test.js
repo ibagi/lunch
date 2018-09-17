@@ -1,7 +1,5 @@
 const lunch = require('../src/common/');
 
-const testLabel = (name) => `${name} result is correct`;
-
 function assertProviderResult(result) {
   expect(result).not.toBe(null);
 }
@@ -11,27 +9,33 @@ async function getProviderResult(providerName) {
   return await provider();
 }
 
-test(testLabel('drake'), async () => {
+test('drake', async () => {
   const result = await getProviderResult('drake');
   assertProviderResult(result);
 });
 
-test(testLabel('hemo'), async () => {
+test('hemo', async () => {
   const result = await getProviderResult('hemo');
   assertProviderResult(result);
 });
 
-test(testLabel('halasz'), async () => {
+test('halasz', async () => {
   const result = await getProviderResult('halasz');
   assertProviderResult(result);
 });
 
-test(testLabel('newyork'), async () => {
+test('newyork', async () => {
   const result = await getProviderResult('newyork');
   assertProviderResult(result);
 });
 
-test(testLabel('sorarium'), async () => {
+test('sorarium', async () => {
   const result = await getProviderResult('sorarium');
+  assertProviderResult(result);
+});
+
+test('heaven', async () => {
+  const result = await getProviderResult('heaven');
+  console.log(result);
   assertProviderResult(result);
 });
