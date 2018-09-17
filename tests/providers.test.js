@@ -36,6 +36,5 @@ test('sorarium', async () => {
 
 test('heaven', async () => {
   const result = await getProviderResult('heaven');
-  console.log(result);
   assertProviderResult(result);
 });
