@@ -1,13 +1,13 @@
 {
-  "name": "lunch-web",
+  "name": "lunch",
   "version": "0.1.0",
   "description": "Simple restaurant menu scrapper for lazy people",
-  "main": "index.js",
+  "main": "./src/server.js",
   "bin": {
-    "lunch-web": "server.js"
+    "lunch-web": "./src/server.js"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./src/server.js",
     "debug": "set DEBUG=web:* & npm start"
   },
   "repository": {
@@ -23,11 +23,13 @@
     "scrapping"
   ],
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "moment": "^2.22.2",
+    "rss-parser": "^3.1.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "lunch": "file:../common",
     "pug": "2.0.0-beta11"
   }
 }

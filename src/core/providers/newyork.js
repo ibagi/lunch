@@ -13,5 +13,7 @@ const NewYork = async () => {
     return `${URI}\\${$(link).attr('href')}`;
 }
 
-NewYork.display = 'New York Caffé';
-module.exports = NewYork;
+module.exports = {
+    display: 'New York Caffé',
+    get: NewYork
+};

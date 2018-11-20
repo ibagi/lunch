@@ -1,7 +1,0 @@
-.ui.inverted.vertical.masthead.center.aligned.segment
-    .ui.container
-        .ui.text.container
-            h1.ui.inverted.header Lunch
-        .ui.secondary.inverted.menu
-            each provider in providers
-                a.item(class={active: currentUrl === '/' + provider}, style={ 'text-transform': 'uppercase'} href='/' + provider)=provider

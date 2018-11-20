@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../lunch');
-const markToday = require('../markToday');
 
 const URI = 'http://www.tisztiklubetterem.hu/?menu=menu';
 
@@ -32,5 +31,7 @@ const Hemo = async () => {
     return menuItems;
 };
 
-Hemo.display = 'Tiszti klub';
-module.exports = markToday(Hemo);
+module.exports = {
+    display: 'Tiszti klub',
+    get: Hemo
+};

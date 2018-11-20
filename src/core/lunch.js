@@ -29,7 +29,10 @@ const fetchFile = (uri, path) => {
 const getAllProviders = () => {
     const providerPath = path.join(__dirname, 'providers');
     files = fs.readdirSync(providerPath);
-    return files.map(i => i.replace('.js', ''));
+    return files.map(i => ({
+        link: i.replace('.js', ''), 
+        title: require(path.join(providerPath, i)).display
+    }));
 };
 
 const getProviderPath = (name) => {

@@ -1,9 +1,9 @@
-.ui.segment.shadow
-    .ui.relaxed.divided.list
-        each menuItem in menu
+.ui.list
+    each menuItem in menu
+        .panel
             .item
                 .content
-                    div(class = menuItem.isToday ? 'red' : '').header.uppercase= menuItem.header
+                    h3.ui.header.clear-margin.uppercase= menuItem.header
                     .ui.list
                         each item in menuItem.items
                            li.item.description= "- " + item

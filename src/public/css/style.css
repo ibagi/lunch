@@ -1,0 +1,47 @@
+.bold {
+  font-weight: bold;
+}
+
+.red {
+  color: red !important;
+}
+
+.clear-margin {
+  margin: 0 !important;
+}
+
+.pusher {
+  background: rgb(236, 234, 252) !important
+}
+
+.hidden.menu {
+  display: none;
+}
+
+.panel {
+  padding: 1rem;
+  margin: .5rem 0;
+  background-color: #fff;
+  color: #222;
+  border-radius: 5px;
+  border: none;
+}
+
+.secondary.pointing.menu .toc.item {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .ui.fixed.menu {
+    display: none !important;
+  }
+
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
+    display: none;
+  }
+
+  .secondary.pointing.menu .toc.item {
+    display: block;
+  }
+}

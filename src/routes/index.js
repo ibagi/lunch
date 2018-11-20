@@ -1,10 +1,10 @@
 const express = require('express');
-const lunch = require('lunch');
+const lunch = require('../core');
 const router = express.Router();
 
 const providers = lunch.getAllProviders();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (_, res, next) => {
   try {
     res.render('index', { 
       title: 'Lunch',
@@ -19,7 +19,7 @@ router.get('/:restaurant', async (req, res) => {
   try {
     const { restaurant } = req.params;
     const provider = await lunch.getProvider(restaurant);
-    const result = await provider();
+    const result = await provider.get();
 
     res.render('menu', {
       providers,

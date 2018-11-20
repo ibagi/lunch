@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../lunch');
-const markToday = require('../markToday');
 
 const URI = 'http://www.halaszcsardaszolnok.hu/index.php?lng=hun&page=3';
 const DATE_REGEXP = /^(\d{2,4}\.\s){3}/;
@@ -34,5 +33,7 @@ const Halasz = async () => {
     return menuItems;
 }
 
-Halasz.display = 'Halászcsárda';
-module.exports = markToday(Halasz);
+module.exports = {
+    display: 'Halászcsárda',
+    get: Halasz
+};

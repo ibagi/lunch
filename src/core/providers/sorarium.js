@@ -10,5 +10,7 @@ const Sorarium = async () => {
     return $(link).attr('href').replace('https', 'http');
 }
 
-Sorarium.display = 'Sörárium';
-module.exports = Sorarium;
+module.exports = {
+    display: 'Sörárium',
+    get: Sorarium
+};

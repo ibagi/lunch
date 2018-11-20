@@ -1,6 +1,5 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
-const markToday = require('../markToday');
 
 const URI = 'http://drakeetterem.hu/feed';
 
@@ -21,5 +20,7 @@ const Drake = async () => {
     return menuItems;
 }
 
-Drake.display = 'Drake étterem';
-module.exports = markToday(Drake);
+module.exports = {
+    display: 'Drake étterem',
+    get: Drake
+};

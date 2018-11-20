@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../lunch');
-const markToday = require('../markToday');
 
 const URI = 'https://heavenbistro.webnode.hu/menu/';
 const HEADERS = [
@@ -55,5 +54,8 @@ const Heaven = async () => {
     return menuItems;
 };
 
-Heaven.display = 'Heaven';
-module.exports = markToday(Heaven);
+module.exports = {
+    display: 'Heaven',
+    get: Heaven
+};
+
