@@ -1,13 +1,34 @@
 const cheerio = require('cheerio');
 const { fetchHtml } = require('../lunch');
 
-const URI = 'http://sorarium.hu/gasztronomia/';
+const URI = 'https://sorarium.hu/heti-menu/';
 
 const Sorarium = async () => {
-    const rawHtml = await fetchHtml(URI);
-    const $ = cheerio.load(rawHtml);
-    const link = $('#heti-menu').find('a')[0];
-    return $(link).attr('href').replace('https', 'http');
+    const html = await fetchHtml(URI, true);
+    const $ = cheerio.load(html);
+
+    const rows = $('tbody tr');
+    const result = [];
+
+    rows.each(function (index, el) {
+        if(index === 0 || index == rows.length - 1) {
+            return;
+        }
+        
+        const elements = $(this).find('td')
+        const menu = {
+            header: $(elements[0]).text(),
+            items: [
+                $(elements[1]).text(),
+                $(elements[2]).text(),
+                $(elements[3]).text()
+            ]
+        };
+
+        result.push(menu)
+    });
+
+    return result;
 }
 
 module.exports = {
