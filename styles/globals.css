@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    height: 100vh;
+}
+
+body > div:nth-child(1) {
+    height: 100%;
+}

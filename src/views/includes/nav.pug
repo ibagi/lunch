@@ -1,9 +1,0 @@
-.ui.inverted.vertical.masthead.center.aligned.segment
-    .ui.container
-        .ui.text.container
-            h1.ui.inverted.header Lunch
-        .ui.large.secondary.inverted.pointing.menu
-            a.toc.item
-                i.sidebar.icon
-            each provider in providers
-                a.item(class={active: currentUrl === '/' + provider.link}, href='/' + provider.link)=provider.title
